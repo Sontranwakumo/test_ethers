@@ -81,7 +81,7 @@ async function main() {
         console.log(`B's balances: ${await contract.balanceOf(walletB.address)}`);
         console.log(`C's balances: ${await contract.balanceOf(AddressC)}`);
     }
-    await removeAllowance();
+    // await removeAllowance();
     async function removeAllowance() {
         try{
 
