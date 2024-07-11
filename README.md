@@ -1,13 +1,4 @@
-# Sample Hardhat Project
+# Exercise of 11th July
 
-This project demonstrates a basic Hardhat use case. It comes with a sample contract, a test for that contract, and a Hardhat Ignition module that deploys that contract.
-
-Try running some of the following tasks:
-
-```shell
-npx hardhat help
-npx hardhat test
-REPORT_GAS=true npx hardhat test
-npx hardhat node
-npx hardhat ignition deploy ./ignition/modules/Lock.ts
-```
+- Morning exercise: https://github.com/Sontranwakumo/test_ethers/blob/main/test_ether.ts
+- Afternoon exercise: https://github.com/Sontranwakumo/test_ethers/blob/main/erc20_ether.ts
