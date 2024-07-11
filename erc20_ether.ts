@@ -32,7 +32,12 @@ async function main() {
         console.log('Transaction hash:', tx.hash);
 
     }
+    // Mint 1000 tokens.
     // await mint(wallet.address,'1000');
+    let currentBalance = await contract.balanceOf(wallet.address);
+    totalSupply = await contract.totalSupply();
+    console.log(`Current balance: ${currentBalance}`);
+    console.log(`Total supply: ${totalSupply}`);
 
 
     //TRANSFER
@@ -46,16 +51,12 @@ async function main() {
         console.log(`Balances of person you sent: ${await contract.balanceOf(to)}`);
     }
     const target_add:string = "0x6E75684671B73307E1b08cBce0EB38D39C5B2BE8";
-    // transfer(target_add,`1.6`);
+    // Transfer 1.6 token.
+    // await transfer(target_add,`1.6`);
     
-    let currentBalance = await contract.balanceOf(wallet.address);
-    totalSupply = await contract.totalSupply();
-    console.log(`Current balance: ${currentBalance}`);
-    console.log(`Total supply: ${totalSupply}`);
 
-    //await Simulation();
+    // await Simulation();
     async function Simulation() {
-        // console.log(process.env.PRIVATE_KEY_B);
         const walletB = new ethers.Wallet(process.env.PRIVATE_KEY_B||'',provider);
         // a approve b to spend 100 token
         // Address A: 0x5641197e7BFa123834D8a99A411B9905AaFD7AbC
@@ -63,14 +64,15 @@ async function main() {
         // Address C: 0xeb442f31BFC58E26c4741002E58D005dB9488d78
         // consider a as wallet.address
         // consider b as walletB.address
-        console.log(``)
+        let AddressC = "0xeb442f31BFC58E26c4741002E58D005dB9488d78";
+        console.log(`Before transfer`)
         console.log(`A's balances: ${await contract.balanceOf(wallet.address)}`);
         console.log(`B's balances: ${await contract.balanceOf(walletB.address)}`);
+        console.log(`B's balances: ${await contract.balanceOf(AddressC)}`);
         let response = await contract.approve(walletB.address,ethers.parseUnits('100',18));
         await response.wait();
         const contractB = new ethers.Contract(contractAddress,contractABI,walletB);
         // b transfer 50 from A to C
-        let AddressC = "0xeb442f31BFC58E26c4741002E58D005dB9488d78";
         response = await contractB.transferFrom(wallet.address,AddressC,ethers.parseUnits('50',18));
         await response.wait();
 
